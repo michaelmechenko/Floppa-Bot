@@ -25,6 +25,7 @@ async def on_message(message):
 
 bot = commands.Bot(command_prefix="!", intents=discord.Intents.all())
 slash = SlashCommand(bot, sync_commands=True)
+
 class Slash(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
@@ -46,6 +47,6 @@ async def _floppa(ctx:SlashContext):
     embed.set_image(url="attachment://image.png")
     await ctx.channel.send(file=file, embed=embed)
 
-token = os.environ('FLOPPATOKEN')
+token = os.getenv('FLOPPATOKEN')
 client.run(token)
 #bot.run(token)
