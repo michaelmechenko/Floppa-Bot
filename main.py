@@ -2,7 +2,7 @@ import discord
 import os
 from discord.ext import commands
 from dotenv import load_dotenv
-from discord_slash import SlashCommand, SlashContext
+from discord_slash import SlashCommand, SlashContext, cog_ext
 from discord_slash.utils.manage_commands import create_choice, create_option
 
 load_dotenv()
@@ -16,21 +16,36 @@ async def on_ready():
 async def on_message(message):
     if message.author == client.user:
         return
-    if message.content.startswith('floppa'):
-        await message.channel.send('floppa')
-    if message.content.startswith('?hi'):
-        await message.channel.send('floppa says hello')
+    if message.content.startswith('hi floppa'):
+        await message.channel.send('hello {0.author}'.format(message))
+        return
+    for word in message.content.split():
+        if word == "floppa":
+            await message.channel.send('floppa?')
 
 bot = commands.Bot(command_prefix="!", intents=discord.Intents.all())
 slash = SlashCommand(bot, sync_commands=True)
+class Slash(commands.Cog):
+    def __init__(self, bot):
+        self.bot = bot
+
+    @cog_ext.cog_slash(name="hello :)")
+    async def _test(self, ctx: SlashContext):
+        embed = discord.Embed(title="hello there")
+        await ctx.send(content="test", embeds=[embed])
+
+def setup(bot):
+    bot.add_cog(Slash(bot))
 
 @slash.slash(
     name="floppa",
-    description="floppa saying floppa",
-    guild_ids=[374371380478607366])
-
+    description="floppa")
 async def _floppa(ctx:SlashContext):
-    await ctx.send("floppa")
+    file = discord.File(r"C:\Users\Michael\Desktop\Discord Bots\Floppa Bot\imgs\floppa.jpg", filename="image.png")
+    embed = discord.Embed(title="floppa", description="floppin'", color=0x00ff00)
+    embed.set_image(url="attachment://image.png")
+    await ctx.send(file=file, embed=embed)
 
 token = os.getenv('FLOPPATOKEN')
 client.run(token)
+#bot.run(token)
