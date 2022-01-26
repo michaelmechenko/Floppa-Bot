@@ -1,1 +1,8 @@
-- temporary readme
+## Floppa Bot
+# Introduction
+A simple bot programmed in python as practice understanding the Discord API.
+# Commands
+Slash commands to be implemented soon
+> /floppa - posts a .jpeg of a caracal to the channel
+> ?hi - bot responds with a message in the channel
+> floppa - bot responds with a message in the channel
