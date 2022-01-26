@@ -46,6 +46,6 @@ async def _floppa(ctx:SlashContext):
     embed.set_image(url="attachment://image.png")
     await ctx.channel.send(file=file, embed=embed)
 
-token = os.getenv('FLOPPATOKEN')
+token = os.environ('FLOPPATOKEN')
 client.run(token)
 #bot.run(token)
