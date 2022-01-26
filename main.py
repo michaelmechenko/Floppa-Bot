@@ -44,7 +44,7 @@ async def _floppa(ctx:SlashContext):
     file = discord.File(r"C:\Users\Michael\Desktop\Discord Bots\Floppa Bot\imgs\floppa.jpg", filename="image.png")
     embed = discord.Embed(title="floppa", description="floppin'", color=0x00ff00)
     embed.set_image(url="attachment://image.png")
-    await ctx.send(file=file, embed=embed)
+    await ctx.channel.send(file=file, embed=embed)
 
 token = os.getenv('FLOPPATOKEN')
 client.run(token)
