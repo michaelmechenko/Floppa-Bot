@@ -16,8 +16,10 @@ async def on_ready():
 async def on_message(message):
     if message.author == client.user:
         return
+    if message.content.startswith('send me a picture floppa'):
+        await message.channel.send(file=discord.File(r'C:\Users\Michael\Desktop\Discord Bots\Floppa Bot\imgs\floppa.jpg'))
     if message.content.startswith('hi floppa'):
-        await message.channel.send('hello {0.author}'.format(message))
+        await message.channel.send('hi {0.author}'.format(message))
         return
     for word in message.content.split():
         if word == "floppa":
