@@ -3,7 +3,6 @@ import os
 from discord.ext import commands
 from dotenv import load_dotenv
 from discord_slash import SlashCommand, SlashContext, cog_ext
-from discord_slash.utils.manage_commands import create_choice, create_option
 
 load_dotenv()
 client = discord.Client()
@@ -43,11 +42,11 @@ def setup(bot):
 @slash.slash(
     name="floppa",
     description="floppa")
+
 async def _floppa(ctx:SlashContext):
-    file = discord.File(r"C:\Users\Michael\Desktop\Discord Bots\Floppa Bot\imgs\floppa.jpg", filename="image.png")
-    embed = discord.Embed(title="floppa", description="floppin'", color=0x00ff00)
-    embed.set_image(url="attachment://image.png")
-    await ctx.channel.send(file=file, embed=embed)
+    embed_text = discord.Embed(title="floppa", description="floppin'", color=0x00ff00)
+    await ctx.channel.send(file=discord.File(r'C:\Users\Michael\Desktop\Discord Bots\Floppa Bot\imgs\floppa.jpg'), embed=embed_text)
+
 
 token = os.getenv('FLOPPATOKEN')
 client.run(token)
